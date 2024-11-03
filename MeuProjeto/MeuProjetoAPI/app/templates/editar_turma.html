@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Editar Turma</h2>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <div>
+            {{ form.descricao.label }} {{ form.descricao(size=32) }}
+        </div>
+        <div>
+            {{ form.professor_id.label }} {{ form.professor_id() }}
+        </div>
+        <div>
+            <button type="submit">Salvar</button>
+        </div>
+    </form>
+{% endblock %}

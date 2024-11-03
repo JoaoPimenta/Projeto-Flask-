@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Lista de Alunos</h2>
+    <form method="POST" action="{{ url_for('main.listar_alunos') }}">
+        {{ form.hidden_tag() }}
+        <div>
+            {{ form.nome.label }} {{ form.nome(size=32) }}
+        </div>
+        <div>
+            {{ form.idade.label }} {{ form.idade(size=5) }}
+        </div>
+        <div>
+            {{ form.turma_id.label }} {{ form.turma_id() }}
+        </div>
+        <div>
+            {{ form.data_nascimento.label }} {{ form.data_nascimento() }}
+        </div>
+        <div>
+            {{ form.nota_primeiro_semestre.label }} {{ form.nota_primeiro_semestre(size=5) }}
+        </div>
+        <div>
+            {{ form.nota_segundo_semestre.label }} {{ form.nota_segundo_semestre(size=5) }}
+        </div>
+        <div>
+            <button type="submit">Adicionar Aluno</button>
+        </div>
+    </form>
+    <ul>
+    {% if alunos %}
+        {% for aluno in alunos %}
+            <li>
+                {{ aluno.nome }} - Turma: {{ aluno.turma.descricao }}
+                <a href="{{ url_for('main.editar_aluno', id=aluno.id) }}">Editar</a>
+                <form method="POST" action="{{ url_for('main.deletar_aluno', id=aluno.id) }}" style="display:inline;">
+                    <button type="submit">Excluir</button>
+                </form>
+            </li>
+        {% endfor %}
+    {% else %}
+        <li>Nenhum aluno cadastrado.</li>
+    {% endif %}
+</ul>
+{% endblock %}

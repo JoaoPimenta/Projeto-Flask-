@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Editar Professor</h1>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    <div>
+        {{ form.nome.label }} {{ form.nome() }}
+    </div>
+    <div>
+        {{ form.email.label }} {{ form.email() }}
+    </div>
+    <div>
+        <input type="submit" value="Salvar">
+    </div>
+</form>
+{% endblock %}

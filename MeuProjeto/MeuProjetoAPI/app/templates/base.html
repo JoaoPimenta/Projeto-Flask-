@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Projeto</title>
+</head>
+<body>
+    <h1>Bem-vindo ao Sistema de Gestão Escolar</h1>
+    <nav>
+        <a href="/">Início</a>
+        <a href="/professores">Professores</a>
+        <a href="/turmas">Turmas</a>
+        <a href="/alunos">Alunos</a>
+    </nav>
+    <hr>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    <div>
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

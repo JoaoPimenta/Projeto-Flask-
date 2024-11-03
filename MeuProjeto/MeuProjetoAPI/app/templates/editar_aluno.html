@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Editar Aluno</h2>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <div>
+            {{ form.nome.label }} {{ form.nome(size=32) }}
+        </div>
+        <div>
+            {{ form.idade.label }} {{ form.idade(size=5) }}
+        </div>
+        <div>
+            {{ form.turma_id.label }} {{ form.turma_id() }}
+        </div>
+        <div>
+            {{ form.data_nascimento.label }} {{ form.data_nascimento() }}
+        </div>
+        <div>
+            {{ form.nota_primeiro_semestre.label }} {{ form.nota_primeiro_semestre(size=5) }}
+        </div>
+        <div>
+            {{ form.nota_segundo_semestre.label }} {{ form.nota_segundo_semestre(size=5) }}
+        </div>
+        <div>
+            <button type="submit">Salvar</button>
+        </div>
+    </form>
+{% endblock %}

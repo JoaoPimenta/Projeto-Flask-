@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Lista de Turmas</h2>
+    <form method="POST" action="{{ url_for('main.listar_turmas') }}">
+        {{ form.hidden_tag() }}
+        <div>
+            {{ form.descricao.label }} {{ form.descricao(size=32) }}
+        </div>
+        <div>
+            {{ form.professor_id.label }} {{ form.professor_id() }}
+        </div>
+        <div>
+            <button type="submit">Adicionar Turma</button>
+        </div>
+    </form>
+    <ul>
+        {% for turma in turmas %}
+            <li>
+                {{ turma.descricao }} - Professor: {{ turma.professor.nome }}
+                <a href="{{ url_for('main.editar_turma', id=turma.id) }}">Editar</a>
+                <form method="POST" action="{{ url_for('main.deletar_turma', id=turma.id) }}" style="display:inline;">
+                    <button type="submit">Excluir</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

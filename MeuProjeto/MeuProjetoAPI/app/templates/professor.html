@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Lista de Professores</h2>
+    <form method="POST" action="{{ url_for('main.listar_professores') }}">
+        {{ form.hidden_tag() }}
+        <div>
+            {{ form.nome.label }} {{ form.nome(size=32) }}
+        </div>
+        <div>
+            {{ form.idade.label }} {{ form.idade(size=5) }}
+        </div>
+        <div>
+            {{ form.materia.label }} {{ form.materia(size=32) }}
+        </div>
+        <div>
+            {{ form.observacoes.label }} {{ form.observacoes(rows=4) }}
+        </div>
+        <div>
+            <button type="submit">Adicionar Professor</button>
+        </div>
+    </form>
+    <ul>
+        {% for professor in professores %}
+            <li>
+                {{ professor.nome }} - {{ professor.materia }}
+                <a href="{{ url_for('main.editar_professor', id=professor.id) }}">Editar</a>
+                <form method="POST" action="{{ url_for('main.deletar_professor', id=professor.id) }}" style="display:inline;">
+                    <button type="submit">Excluir</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
